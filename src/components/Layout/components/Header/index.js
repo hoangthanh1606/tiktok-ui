@@ -25,7 +25,8 @@ import images from '~/assets/images';
 import styles from './Header.module.scss';
 import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Popper/Menu';
-import { faCaretSquareUp, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
+import { InboxIcon, MessageIcon, UploadIcon } from '~/components/Icons';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
@@ -140,14 +141,19 @@ function Header() {
         <div className={cx('actions')}>
           {currentUser ? (
             <>
-              <Tippy delayed={[0, 200]} content="Upload video" placement="bottom">
+              <Tippy delay={[0, 100]} content="Upload video" placement="bottom">
                 <button className={cx('actions-btn')}>
-                  <FontAwesomeIcon icon={faCaretSquareUp} />
+                  <UploadIcon />
                 </button>
               </Tippy>
-              <Tippy delayed={[0, 200]} content="Message" placement="bottom">
+              <Tippy delay={[0, 100]} content="Message" placement="bottom">
                 <button className={cx('actions-btn')}>
-                  <FontAwesomeIcon icon={faPaperPlane} />
+                  <MessageIcon />
+                </button>
+              </Tippy>
+              <Tippy delay={[0, 100]} content="Inbox" placement="bottom">
+                <button className={cx('actions-btn')}>
+                  <InboxIcon />
                 </button>
               </Tippy>
             </>
@@ -161,10 +167,11 @@ function Header() {
           )}
           <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handlMenuChange}>
             {currentUser ? (
-              <img
+              <Image
                 className={cx('user-avatar')}
                 alt="Hoang Thanh"
                 src="https://tophinhanh.com/wp-content/uploads/2021/12/anh-avatar-dep-cho-con-gai.jpg"
+                fallback="https://files.fullstack.edu.vn/f8-prod/user_avatars/1/623d4b2d95cec.png"
               />
             ) : (
               <button className={cx('more-btn')}>
