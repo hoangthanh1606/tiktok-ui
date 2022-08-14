@@ -19,9 +19,10 @@
     font-size: 1.6rem;
     caret-color: var(--primary);
     background-color: transparent;
+    font-family: var(--font-family);
   }
 
-  input:not(:placeholder-shown) ~ .search-btn {
+  input:not(:placeholder-shown)~.search-btn {
     color: rgba(22, 24, 35, 0.75);
   }
 
@@ -64,6 +65,7 @@
   from {
     transform: translateY(-50%) rotate(0);
   }
+
   to {
     transform: translateY(-50%) rotate(360deg);
   }
