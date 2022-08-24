@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './Menu.module.scss';
 
@@ -14,6 +15,7 @@ const defaultFn = () => {};
 function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn }) {
   const [history, setHistory] = useState([{ data: items }]);
   const current = history[history.length - 1];
+  console.log('🚀 ~ file: index.js ~ line 18 ~ Menu ~ current', current);
 
   const renderItems = () => {
     return current.data.map((item, index) => {
@@ -47,7 +49,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
           <PopperWrapper className={cx('menu-poper')}>
             {history.length > 1 && (
               <Header
-                title="Language"
+                title={current.title}
                 onBack={() => {
                   setHistory((prev) => prev.slice(0, prev.length - 1));
                 }}
@@ -63,5 +65,12 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
     </Tippy>
   );
 }
+
+Menu.propTypes = {
+  children: PropTypes.node.isRequired,
+  items: PropTypes.array,
+  hideOnClick: PropTypes.bool,
+  onChange: PropTypes.func,
+};
 
 export default Menu;
